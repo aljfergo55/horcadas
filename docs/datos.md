@@ -95,6 +95,8 @@ Después pon `"ortho": "data/ortho.webp"` en `public/data/meta.json`. Si ocupa d
 
 ## 5. Rutas (GPX → routes.json)
 
+**Importante:** el fichero GPX debe llamarse como el `id` de la ruta en `src/data/rutas.json` (`puerto-de-horcadas.gpx`, `collado-el-baile.gpx`). Así el script toma de ese catálogo el nombre, la dificultad y la descripción, y la ficha de la web muestra el botón «Ver en el relieve 3D». Los GPX originales no se suben al repositorio (`etc/` está en el `.gitignore`); solo se guarda en `routes.json` la geometría simplificada.
+
 Graba las rutas con el móvil (o exporta los GPX de una app) y colócalos en `rutas/`:
 
 ```bash

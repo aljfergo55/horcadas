@@ -5,8 +5,9 @@
 //   node scripts/gpx-to-routes.mjs rutas/valle.gpx rutas/cresta.gpx
 //   node scripts/gpx-to-routes.mjs rutas/*.gpx --meta public/data/meta.json --out public/data/routes.json
 //
-// El id de cada ruta sale del nombre del fichero. Si routes.json ya existía, se
-// conservan dificultad, color y descripción de las rutas con el mismo id.
+// El id de cada ruta sale del nombre del fichero. Nombre, dificultad y descripción se toman,
+// por este orden, de routes.json (si ya existía), del catálogo src/data/rutas.json (mismo id) y
+// del propio GPX. Así los ficheros deben llamarse como el id del catálogo, p. ej. puerto-de-horcadas.gpx.
 //
 // Sin dependencias externas.
 
@@ -43,6 +44,16 @@ if (existsSync(outPath)) {
     previous = new Map(old.features.map((f) => [f.properties.id, f.properties]));
   } catch {
     previous = new Map();
+  }
+}
+
+let catalog = new Map();
+const catalogPath = resolve(flag('catalog', 'src/data/rutas.json'));
+if (existsSync(catalogPath)) {
+  try {
+    catalog = new Map(JSON.parse(readFileSync(catalogPath, 'utf8')).map((r) => [r.id, r]));
+  } catch {
+    catalog = new Map();
   }
 }
 
@@ -95,14 +106,15 @@ files.forEach((file, index) => {
   if (outside) console.warn(`!! ${file}: ${outside} puntos fuera del relieve descartados.`);
 
   const old = previous.get(id);
+  const cat = catalog.get(id);
   features.push({
     type: 'Feature',
     properties: {
       id,
-      name: old?.name ?? name,
-      difficulty: old?.difficulty ?? 'Media',
+      name: old?.name ?? cat?.nombre ?? name,
+      difficulty: old?.difficulty ?? cat?.dificultad ?? 'Media',
       color: old?.color ?? PALETTE[index % PALETTE.length],
-      description: old?.description ?? 'Descripción pendiente.',
+      description: old?.description ?? cat?.resumen ?? 'Descripción pendiente.',
     },
     geometry: { type: 'LineString', coordinates: coords },
   });

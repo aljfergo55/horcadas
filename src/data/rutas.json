@@ -19,30 +19,42 @@
     ],
     "aviso": "La bajada por la Hoz de los Escalones es empinada e irregular: lleva calzado de montaña. Si prefieres un recorrido más cómodo, puedes volver por el mismo camino de subida.",
     "fuentes": [
-      { "titulo": "Folleto de la ruta (Fundación Patrimonio Natural de Castilla y León)", "url": "https://patrimonionatural.org/ficheros/folletohorcadas.pdf" },
-      { "titulo": "Ficha en Terranostrum", "url": "https://www.terranostrum.es/senderismo/leon/montanas-de-riano-picos-de-europa/puerto-de-horcadas" }
+      {
+        "titulo": "Folleto de la ruta (Fundación Patrimonio Natural de Castilla y León)",
+        "url": "https://patrimonionatural.org/ficheros/folletohorcadas.pdf"
+      },
+      {
+        "titulo": "Ficha en Terranostrum",
+        "url": "https://www.terranostrum.es/senderismo/leon/montanas-de-riano-picos-de-europa/puerto-de-horcadas"
+      }
     ],
-    "gpx": "Terranostrum ofrece el track en GPX en su ficha, sin indicar licencia de reutilización. No se copia a este repositorio."
+    "gpx": "Track GPX publicado por la Mancomunidad Montaña de Riaño a través de Terranostrum.es, sin licencia de reutilización indicada. Solo se guarda la geometría simplificada para dibujarla en el relieve; el GPX original no está en el repositorio."
   },
   {
     "id": "collado-el-baile",
     "nombre": "Collado el Baile",
     "codigo": "PRC-LE 52",
     "tipo": "Circular",
-    "distanciaKm": 10.5,
-    "desnivelM": null,
-    "duracion": "Unas 4 h",
+    "distanciaKm": 6.6,
+    "desnivelM": 250,
+    "duracion": "Unas 4 h (variante de 10,5 km)",
     "dificultad": "Media",
     "salida": "Carande, a las afueras, frente al cementerio",
     "epoca": "Todo el año, salvo con nieve",
     "resumen": "Circuito por Carande, Horcadas y el monte de El Raso, con subida por las faldas del Gilbo y bajada final por un robledal hasta Carande. Hay una variante con salida desde Las Viescas. No es apta para bicicleta.",
     "puntos": [],
-    "aviso": "Los 10,5 km son los que da Terranostrum para la variante desde Las Viescas. El listado de la Fundación Patrimonio Natural recoge esta ruta como PR-LE 52, así que conviene confirmar el código y la distancia antes de señalizarla en la web.",
+    "aviso": "Distancia y desnivel medidos sobre el track GPX publicado por Terranostrum y el relieve del IGN. La ficha de Terranostrum da 10,5 km y unas 4 h para la variante con salida desde Las Viescas, y recoge esta ruta como PRC-LE 52, mientras que el listado de la Fundación Patrimonio Natural la llama PR-LE 52: conviene confirmar el código antes de señalizarla.",
     "fuentes": [
-      { "titulo": "Ficha en Terranostrum", "url": "https://www.terranostrum.es/senderismo/leon/montanas-de-riano-picos-de-europa/horcadas/collado-el-baile" },
-      { "titulo": "Listado de rutas PR del Parque Regional Montaña de Riaño y Mampodre (PDF)", "url": "https://patrimonionatural.org/ficheros/RUTAS%20PR%20MONTA%C3%91A%20DE%20RIA%C3%91O%20Y%20MAMPODRE-20220901-115452.pdf" }
+      {
+        "titulo": "Ficha en Terranostrum",
+        "url": "https://www.terranostrum.es/senderismo/leon/montanas-de-riano-picos-de-europa/horcadas/collado-el-baile"
+      },
+      {
+        "titulo": "Listado de rutas PR del Parque Regional Montaña de Riaño y Mampodre (PDF)",
+        "url": "https://patrimonionatural.org/ficheros/RUTAS%20PR%20MONTA%C3%91A%20DE%20RIA%C3%91O%20Y%20MAMPODRE-20220901-115452.pdf"
+      }
     ],
-    "gpx": "Terranostrum ofrece el track en GPX en su ficha, sin indicar licencia de reutilización. No se copia a este repositorio."
+    "gpx": "Track GPX de Terranostrum.es, sin licencia de reutilización indicada. Solo se guarda la geometría simplificada para dibujarla en el relieve; el GPX original no está en el repositorio."
   },
   {
     "id": "pico-gilbo",
@@ -59,7 +71,10 @@
     "puntos": [],
     "aviso": "Faltan distancia, desnivel y punto de salida. Hay que completarlos con un track propio antes de publicar la ruta como definitiva.",
     "fuentes": [
-      { "titulo": "Portal de turismo Montaña de Riaño", "url": "https://www.mriano.com/node/22457" }
+      {
+        "titulo": "Portal de turismo Montaña de Riaño",
+        "url": "https://www.mriano.com/node/22457"
+      }
     ],
     "gpx": null
   }
