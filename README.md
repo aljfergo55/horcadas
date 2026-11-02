@@ -57,6 +57,10 @@ Todo el texto de las secciones sale de ficheros JSON en `src/data/`; el HTML se 
 - Las distancias y tiempos de `rutas.json` proceden de las fuentes citadas en cada ficha. Revísalos con tu propio track antes de darlos por definitivos.
 - **Vista previa sin `npm install`:** `npm run preview:build` crea `preview/` con una versión que carga las librerías desde CDN (Node 22.13+).
 
+## Despliegue
+
+Sitio en `https://horcadas.es` (dominio en DonDominio, alojamiento estático en Cloudflare Pages). Pasos en [docs/despliegue.md](docs/despliegue.md).
+
 ## Estado
 
 - [x] Esqueleto, escena de terreno, rutas con hover, panel, scroll con cámara
