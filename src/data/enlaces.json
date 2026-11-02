@@ -1,0 +1,72 @@
+[
+  {
+    "grupo": "Rutas y naturaleza",
+    "items": [
+      {
+        "titulo": "Casa del Parque de Valdeburón",
+        "url": "https://www.turismocastillayleon.com/es/naturaleza/casa-parque-valdeburon",
+        "nota": "Centro de visitantes del Parque Regional Picos de Europa en Castilla y León."
+      },
+      {
+        "titulo": "Portal de turismo Montaña de Riaño",
+        "url": "https://www.mriano.com/node/22457",
+        "nota": "Rutas de senderismo de la comarca con duración y dificultad."
+      },
+      {
+        "titulo": "Folleto de la ruta de Horcadas (PDF)",
+        "url": "https://patrimonionatural.org/ficheros/folletohorcadas.pdf",
+        "nota": "Descripción oficial de la ruta circular de 6 km y normas del parque."
+      },
+      {
+        "titulo": "Rutas PR del Parque Regional Montaña de Riaño y Mampodre (PDF)",
+        "url": "https://patrimonionatural.org/ficheros/RUTAS%20PR%20MONTA%C3%91A%20DE%20RIA%C3%91O%20Y%20MAMPODRE-20220901-115452.pdf",
+        "nota": "Listado de las 30 rutas PR del parque."
+      },
+      {
+        "titulo": "Rutas de la zona en Terranostrum",
+        "url": "https://www.terranostrum.es/senderismo/leon/montanas-de-riano-picos-de-europa/horcadas/1",
+        "nota": "Fichas con mapa y descarga de GPX."
+      }
+    ]
+  },
+  {
+    "grupo": "Instituciones",
+    "items": [
+      {
+        "titulo": "Fundación Patrimonio Natural de Castilla y León",
+        "url": "https://patrimonionatural.org",
+        "nota": "Gestiona los espacios naturales y sus Casas del Parque."
+      },
+      {
+        "titulo": "Ayuntamiento de Riaño en Turismo Castilla y León",
+        "url": "https://www.turismocastillayleon.com/es/servicios/ayuntamientos/riano",
+        "nota": "Ficha del municipio en el portal oficial de turismo de la Junta."
+      }
+    ]
+  },
+  {
+    "grupo": "Tiempo y cartografía",
+    "items": [
+      {
+        "titulo": "AEMET",
+        "url": "https://www.aemet.es",
+        "nota": "Previsión y avisos meteorológicos. Consúltala antes de subir a la montaña."
+      },
+      {
+        "titulo": "Centro de Descargas del CNIG",
+        "url": "https://centrodedescargas.cnig.es",
+        "nota": "Modelo digital del terreno y ortofotos que alimentan el relieve en 3D."
+      }
+    ]
+  },
+  {
+    "grupo": "Noticias de la zona",
+    "items": [
+      {
+        "titulo": "Carande restaura su hórreo declarado Bien de Interés Cultural",
+        "url": "https://www.diariodeleon.es/leon/261007/2099465/pueblo-leon-horreo-unico-acaba-recibir-luz-verde-restauracion-historica.html",
+        "nota": "Diario de León. Carande es un pueblo vecino de Horcadas."
+      }
+    ]
+  }
+]

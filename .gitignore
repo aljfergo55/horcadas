@@ -1,0 +1,14 @@
+node_modules/
+dist/
+preview/
+.astro/
+.env
+.env.*
+
+# Datos de origen pesados (MDT/ortofoto del CNIG): se regeneran con el pipeline
+data-raw/
+*.tif
+*.tiff
+*.gpx.bak
+
+.DS_Store

@@ -1,0 +1,25 @@
+{
+  "emergencias": "112",
+  "consejos": [
+    "Consulta la previsión de AEMET antes de salir y no subas con nieve: las rutas de la zona se recomiendan todo el año salvo en época de nieves.",
+    "Usa calzado de montaña. Algunos tramos, como la bajada por la Hoz de los Escalones, son empinados e irregulares.",
+    "Lleva agua y comida suficientes. Hay fuentes en la ruta del Puerto de Horcadas, pero no cuentes con ellas como única reserva.",
+    "Avisa a alguien de tu ruta y de tu hora prevista de vuelta."
+  ],
+  "normasParque": [
+    "No se permite acampar libremente.",
+    "Solo se puede hacer fuego en las zonas habilitadas.",
+    "No cortes ramas ni arranques plantas.",
+    "Mantén el silencio.",
+    "Los vehículos a motor solo pueden circular por las vías autorizadas."
+  ],
+  "contacto": {
+    "nombre": "Casa del Parque de Valdeburón",
+    "telefono": "987 742 215",
+    "nota": "Teléfono que consta en el folleto de la ruta de Horcadas; confírmalo antes de publicarlo como dato vigente."
+  },
+  "fuente": {
+    "titulo": "Folleto de la ruta de Horcadas",
+    "url": "https://patrimonionatural.org/ficheros/folletohorcadas.pdf"
+  }
+}

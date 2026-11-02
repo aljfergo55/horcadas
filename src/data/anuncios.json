@@ -1,0 +1,50 @@
+[
+  {
+    "id": "web-en-construccion",
+    "fecha": "2026-11-02",
+    "categoria": "Aviso",
+    "titulo": "Web en construcción",
+    "texto": "Esta web está en desarrollo. Las rutas dibujadas en 3D, los textos de historia y los anuncios marcados como ejemplo son provisionales.",
+    "caduca": "2027-06-30"
+  },
+  {
+    "id": "ejemplo-aviso",
+    "fecha": "2026-11-02",
+    "categoria": "Aviso",
+    "titulo": "Corte de agua programado",
+    "texto": "Anuncio de ejemplo para ver cómo se mostrarán los avisos del pueblo: qué ocurre, cuándo y a quién preguntar.",
+    "contacto": "Contacto de ejemplo",
+    "caduca": "2026-12-31",
+    "ejemplo": true
+  },
+  {
+    "id": "ejemplo-evento",
+    "fecha": "2026-11-01",
+    "categoria": "Eventos",
+    "titulo": "Reunión de vecinos",
+    "texto": "Anuncio de ejemplo para eventos: día, hora, lugar y orden del día.",
+    "contacto": "Contacto de ejemplo",
+    "caduca": "2026-12-31",
+    "ejemplo": true
+  },
+  {
+    "id": "ejemplo-compraventa",
+    "fecha": "2026-10-30",
+    "categoria": "Compraventa",
+    "titulo": "Se vende leña de roble",
+    "texto": "Anuncio de ejemplo de compraventa: qué se ofrece, cantidad, precio orientativo y cómo contactar.",
+    "contacto": "Contacto de ejemplo",
+    "caduca": "2026-12-31",
+    "ejemplo": true
+  },
+  {
+    "id": "ejemplo-servicios",
+    "fecha": "2026-10-28",
+    "categoria": "Servicios",
+    "titulo": "Se ofrece transporte a Riaño",
+    "texto": "Anuncio de ejemplo para servicios entre vecinos: transporte, cuidado de huertos, pequeños arreglos.",
+    "contacto": "Contacto de ejemplo",
+    "caduca": "2026-12-31",
+    "ejemplo": true
+  }
+]

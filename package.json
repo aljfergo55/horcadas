@@ -1,0 +1,28 @@
+{
+  "name": "horcadas-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Web inmersiva de Horcadas (Riaño, León): relieve 3D, rutas interactivas y scroll cinematográfico.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "tsc --noEmit",
+    "preview:build": "node --no-warnings scripts/make-preview.mjs --out preview",
+    "data:placeholder": "node scripts/generate-placeholder-data.mjs",
+    "data:dem": "node scripts/dem-to-heightmap.mjs",
+    "data:routes": "node scripts/gpx-to-routes.mjs",
+    "data:ortho": "node scripts/fetch-ortho.mjs"
+  },
+  "dependencies": {
+    "astro": "latest",
+    "gsap": "latest",
+    "lenis": "latest",
+    "three": "latest"
+  },
+  "devDependencies": {
+    "@types/three": "latest",
+    "typescript": "latest"
+  }
+}

@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+import { renderBody } from '../lib/render.mjs';
+import rutas from '../data/rutas.json';
+import enlaces from '../data/enlaces.json';
+import anuncios from '../data/anuncios.json';
+import seguridad from '../data/seguridad.json';
+
+// El contenido se genera en src/lib/render.mjs (también lo usa la vista previa).
+const body = renderBody({ rutas, enlaces, anuncios, seguridad });
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Horcadas, un pueblo de montaña en la comarca de Riaño (León): historia, tradiciones, rutas sobre su relieve en 3D, tablón de anuncios y enlaces útiles." />
+    <meta name="theme-color" content="#0d1417" />
+    <title>Horcadas · Riaño, León</title>
+  </head>
+  <body>
+    <Fragment set:html={body} />
+
+    <noscript>
+      <p class="noscript">Esta web usa JavaScript para mostrar el relieve en 3D y filtrar el tablón. El contenido de texto sigue disponible.</p>
+    </noscript>
+
+    <script>
+      import '../scripts/scene.ts';
+      import '../scripts/board.ts';
+    </script>
+  </body>
+</html>
