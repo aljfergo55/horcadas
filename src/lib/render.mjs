@@ -139,6 +139,7 @@ export function renderBody({ rutas, enlaces, anuncios, seguridad }) {
 </div>
 
 <canvas id="scene" aria-hidden="true"></canvas>
+<div id="poi-layer" aria-hidden="true"></div>
 
 <main>
   <div id="journey">

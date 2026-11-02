@@ -602,3 +602,18 @@ h2 {
 .foot p + p {
   margin-top: 0.3rem;
 }
+
+/* ── lugares de interés sobre el relieve ── */
+#poi-layer { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.poi { position: absolute; left: 0; top: 0; opacity: 0; transition: opacity 0.35s ease; will-change: transform; }
+.poi.on { opacity: 1; }
+.poi-dot { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%;
+  background: #f4efe6; box-shadow: 0 0 0 3px rgba(244, 239, 230, 0.2); }
+.poi-name, .poi-elev { position: absolute; left: 10px; white-space: nowrap; color: #f4efe6;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 8px rgba(0, 0, 0, 0.6); }
+.poi-name { top: -17px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em; }
+.poi-elev { top: -1px; font-size: 0.7rem; opacity: 0.75; }
+.poi-pueblo .poi-dot { background: #ffd166; box-shadow: 0 0 0 4px rgba(255, 209, 102, 0.25); }
+.poi-pico .poi-dot { border-radius: 0; background: transparent; width: 0; height: 0; left: -6px; top: -5px;
+  border: 6px solid transparent; border-bottom: 10px solid #f4efe6; border-top: 0; box-shadow: none; }
+.poi-unconfirmed .poi-name::after { content: ' ?'; opacity: 0.6; }

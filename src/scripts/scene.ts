@@ -57,10 +57,21 @@ interface RouteStats {
   minutes: number;
 }
 
+interface Place {
+  id: string;
+  name: string;
+  kind: string;
+  u: number;
+  v: number;
+  elev: number;
+  unconfirmed: boolean;
+}
+
 interface RouteRuntime {
   props: RouteProps;
   stats: RouteStats;
   material: THREE.MeshBasicMaterial;
+  muted: THREE.Color;
   line: THREE.Mesh;
   hit: THREE.Mesh;
   center: THREE.Vector3;
@@ -73,7 +84,7 @@ interface RouteRuntime {
 const WORLD_W = 100; // ancho del terreno en unidades de escena
 const EXAGGERATION = 2.0; // exageración vertical
 const ROUTE_LIFT = 0.55; // las rutas flotan un poco sobre el suelo
-const TUBE_RADIUS = 0.2;
+const TUBE_RADIUS = 0.13;
 const HIT_RADIUS = 1.1; // tubo invisible, más grueso, para que el hover sea fácil
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -392,8 +403,12 @@ async function main(): Promise<void> {
       const tubular = Math.min(points.length * 2, 800);
       const radial = 6;
 
+      const muted = new THREE.Color(feature.properties.color);
+      const hsl = { h: 0, s: 0, l: 0 };
+      muted.getHSL(hsl);
+      muted.setHSL(hsl.h, hsl.s * 0.4, clamp(hsl.l, 0.5, 0.62));
       const material = new THREE.MeshBasicMaterial({
-        color: feature.properties.color,
+        color: muted,
         fog: false,
         transparent: true,
       });
@@ -414,6 +429,7 @@ async function main(): Promise<void> {
         props: feature.properties,
         stats: computeStats(coords, hm, meta),
         material,
+        muted,
         line,
         hit,
         center,
@@ -425,6 +441,55 @@ async function main(): Promise<void> {
       return runtime;
     });
     const hitMeshes = routes.map((r) => r.hit);
+
+    /* ── lugares de interés (etiquetas HTML proyectadas sobre el relieve) ── */
+    const places = await loadJSON<Place[]>(asset('data/places.json')).catch(() => [] as Place[]);
+    const poiLayer = $('#poi-layer');
+    const poiNodes = poiLayer
+      ? places.map((p) => {
+          const el = document.createElement('div');
+          el.className = `poi poi-${p.kind}${p.unconfirmed ? ' poi-unconfirmed' : ''}`;
+          el.innerHTML = `<span class="poi-dot"></span><span class="poi-name">${esc(p.name)}</span><span class="poi-elev">${p.elev.toLocaleString('es-ES')} m${p.unconfirmed ? ' · aprox.' : ''}</span>`;
+          poiLayer.appendChild(el);
+          return { place: p, el, pos: at(p.u, p.v, 0.8), shown: false };
+        })
+      : [];
+    const poiRay = new THREE.Vector3();
+    const poiProj = new THREE.Vector3();
+    const poiRank: Record<string, number> = { pueblo: 3, pico: 2, puerto: 1 };
+    const updatePois = (): void => {
+      if (!poiNodes.length) return;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const taken: { x: number; y: number }[] = [];
+      const candidates = poiNodes
+        .map((n) => {
+          poiProj.copy(n.pos).project(camera);
+          const dist = camera.position.distanceTo(n.pos);
+          const x = (poiProj.x * 0.5 + 0.5) * w;
+          const y = (-poiProj.y * 0.5 + 0.5) * h;
+          let visible = poiProj.z < 1 && x > 20 && x < w - 20 && y > 60 && y < h - 20 && dist > 4;
+          if (visible) {
+            // oclusión: el relieve entre la cámara y el punto
+            for (let i = 1; i < 14 && visible; i++) {
+              poiRay.lerpVectors(camera.position, n.pos, i / 14);
+              if (groundAt(poiRay.x, poiRay.z) > poiRay.y + 0.3) visible = false;
+            }
+          }
+          return { n, x, y, dist, visible };
+        })
+        .sort((a, b) => (poiRank[b.n.place.kind] ?? 0) - (poiRank[a.n.place.kind] ?? 0) || a.dist - b.dist);
+      for (const c of candidates) {
+        let show = c.visible;
+        if (show && taken.some((t) => Math.abs(t.x - c.x) < 120 && Math.abs(t.y - c.y) < 34)) show = false;
+        if (show) taken.push({ x: c.x, y: c.y });
+        if (show !== c.n.shown) {
+          c.n.shown = show;
+          c.n.el.classList.toggle('on', show);
+        }
+        if (show) c.n.el.style.transform = `translate(${c.x.toFixed(1)}px, ${c.y.toFixed(1)}px)`;
+      }
+    };
 
     /* ── camino de cámara ── */
     // Recorrido sobre el relieve real de Horcadas (el pueblo está en el centro, u = v = 0,5):
@@ -535,9 +600,10 @@ async function main(): Promise<void> {
       const activeId = pinnedId ?? hoverId;
       for (const r of routes) {
         const on = r.props.id === activeId;
-        r.material.opacity = activeId && !on ? 0.3 : 1;
-        r.material.color.set(r.props.color);
-        if (on) r.material.color.lerp(white, 0.45);
+        // Colores apagados en reposo; solo un poco más vivos al pasar el cursor
+        r.material.opacity = on ? 0.9 : activeId ? 0.22 : 0.5;
+        r.material.color.copy(r.muted);
+        if (on) r.material.color.lerp(white, 0.25);
       }
       routeList?.querySelectorAll('button').forEach((b) => {
         b.classList.toggle('active', b.dataset.id === activeId);
@@ -670,6 +736,7 @@ async function main(): Promise<void> {
       end: 'max',
       onToggle: (self) => {
         paused = self.isActive;
+        if (poiLayer) poiLayer.style.display = paused ? 'none' : '';
       },
     });
 
@@ -750,6 +817,7 @@ async function main(): Promise<void> {
         }
       }
 
+      updatePois();
       renderer.render(scene, camera);
     };
 

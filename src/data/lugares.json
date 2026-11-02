@@ -1,0 +1,7 @@
+[
+  { "id": "horcadas", "nombre": "Horcadas", "tipo": "pueblo", "lat": 42.941826, "lon": -5.044586, "ajustar": 0 },
+  { "id": "pico-gilbo", "nombre": "Pico Gilbo", "tipo": "pico", "lat": 42.958043, "lon": -5.046116, "ajustar": 150, "fuente": "PeakVisor (1.679 m); cota local del MDT05 1.674 m" },
+  { "id": "alto-de-las-pintas", "nombre": "Alto de las Pintas", "tipo": "pico", "lat": 42.954862, "lon": -5.097474, "ajustar": 700, "fuente": "PeakVisor (1.985 m); el MDT05 da la cota máxima del recuadro cerca de aquí" },
+  { "id": "puerto-de-horcadas", "nombre": "Puerto de Horcadas", "tipo": "puerto", "lat": 42.92491, "lon": -5.04508, "ajustar": 0, "fuente": "Punto más alto del track PR-LE 25" },
+  { "id": "pena-verada", "nombre": "Peña Verada", "tipo": "pico", "lat": 42.91968, "lon": -5.02935, "ajustar": 250, "porConfirmar": true, "fuente": "Blog Montes de León cita 1.809 m; posición aproximada (cota local 1.802 m al sureste del puerto), por confirmar" }
+]

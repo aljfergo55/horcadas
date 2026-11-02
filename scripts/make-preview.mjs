@@ -54,6 +54,7 @@ for (let i = 0; i < values.length; i++) values[i] = Math.round(bin.readFloatLE(i
 writeFileSync(resolve(out, 'data/heightmap.json'), JSON.stringify(values));
 writeFileSync(resolve(out, 'data/meta.json'), JSON.stringify({ ...meta, heightmap: 'data/heightmap.json' }, null, 2));
 cpSync(resolve(root, 'public/data/routes.json'), resolve(out, 'data/routes.json'));
+cpSync(resolve(root, 'public/data/places.json'), resolve(out, 'data/places.json'));
 
 // ---------- HTML ----------
 const css = read('src/styles/global.css')

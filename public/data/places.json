@@ -1,0 +1,47 @@
+[
+ {
+  "id": "horcadas",
+  "name": "Horcadas",
+  "kind": "pueblo",
+  "u": 0.5,
+  "v": 0.5,
+  "elev": 1120,
+  "unconfirmed": false
+ },
+ {
+  "id": "pico-gilbo",
+  "name": "Pico Gilbo",
+  "kind": "pico",
+  "u": 0.4873,
+  "v": 0.32031,
+  "elev": 1674,
+  "unconfirmed": false
+ },
+ {
+  "id": "alto-de-las-pintas",
+  "name": "Alto de las Pintas",
+  "kind": "pico",
+  "u": 0.05957,
+  "v": 0.35547,
+  "elev": 1965,
+  "unconfirmed": false
+ },
+ {
+  "id": "puerto-de-horcadas",
+  "name": "Puerto de Horcadas",
+  "kind": "puerto",
+  "u": 0.49609,
+  "v": 0.6875,
+  "elev": 1567,
+  "unconfirmed": false
+ },
+ {
+  "id": "pena-verada",
+  "name": "Peña Verada",
+  "kind": "pico",
+  "u": 0.62695,
+  "v": 0.74609,
+  "elev": 1802,
+  "unconfirmed": true
+ }
+]
