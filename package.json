@@ -12,6 +12,7 @@
     "preview:build": "node --no-warnings scripts/make-preview.mjs --out preview",
     "data:placeholder": "node scripts/generate-placeholder-data.mjs",
     "data:dem": "node scripts/dem-to-heightmap.mjs",
+    "data:geotiff": "node scripts/geotiff-to-heightmap.mjs",
     "data:routes": "node scripts/gpx-to-routes.mjs",
     "data:ortho": "node scripts/fetch-ortho.mjs"
   },

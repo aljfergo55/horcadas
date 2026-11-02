@@ -56,6 +56,37 @@ const PASTO_B: RGB = [160, 150, 110];
 const ROCA_A: RGB = [128, 122, 114];
 const ROCA_B: RGB = [170, 162, 150];
 const NIEVE: RGB = [238, 236, 230];
+const AGUA: RGB = [40, 92, 116];
+const ORILLA: RGB = [156, 142, 112];
+
+// Los embalses aparecen en el MDT como una superficie perfectamente plana a una cota fija.
+// Busca el nivel plano más frecuente; si ocupa una parte apreciable del mapa, es agua.
+function detectWaterLevel(elev: Float32Array, n: number): number | null {
+  const bins = new Map<number, number>();
+  let flat = 0;
+  for (let y = 0; y < n - 1; y++) {
+    for (let x = 0; x < n - 1; x++) {
+      const i = y * n + x;
+      const e = elev[i] as number;
+      if (Math.abs((elev[i + 1] as number) - e) < 0.02 && Math.abs((elev[i + n] as number) - e) < 0.02) {
+        const key = Math.round(e * 2) / 2;
+        bins.set(key, (bins.get(key) ?? 0) + 1);
+        flat++;
+      }
+    }
+  }
+  let best: number | null = null;
+  let bestCount = 0;
+  for (const [key, count] of bins) {
+    // Une el bin vecino (el nivel puede caer entre dos medias alturas)
+    const total = count + (bins.get(key + 0.5) ?? 0);
+    if (total > bestCount) {
+      bestCount = total;
+      best = key + ((bins.get(key + 0.5) ?? 0) > count ? 0.25 : 0);
+    }
+  }
+  return best !== null && bestCount > n * n * 0.004 && flat > 0 ? best : null;
+}
 
 // Dirección hacia la luz (noroeste, elevada). El eje y de la imagen apunta al sur.
 const LIGHT = (() => {
@@ -69,6 +100,7 @@ export function paintTerrainTexture(elev: Float32Array, n: number, meta: Terrain
   const mx = meta.widthMeters / (n - 1); // metros por píxel en x
   const my = meta.heightMeters / (n - 1); // metros por píxel en y
   const range = Math.max(1, meta.maxElev - meta.minElev);
+  const water = detectWaterLevel(elev, n);
 
   for (let y = 0; y < n; y++) {
     for (let x = 0; x < n; x++) {
@@ -114,14 +146,28 @@ export function paintTerrainTexture(elev: Float32Array, n: number, meta: Terrain
       c = mix(c, mix(ROCA_A, ROCA_B, speck), rock);
 
       // Brillo: variación natural + sombreado
-      const brightness = (0.86 + 0.2 * clump + 0.12 * (speck - 0.5) + 0.06 * (grain - 0.5)) * light;
+      let brightness = (0.86 + 0.2 * clump + 0.12 * (speck - 0.5) + 0.06 * (grain - 0.5)) * light;
+
+      // Agua (embalse) y franja de orilla descubierta
+      let isWater = false;
+      if (water !== null) {
+        const dz = e - water;
+        const g0 = Math.hypot(gx, gy);
+        if (g0 < 0.12 && Math.abs(dz) < 0.9) {
+          isWater = true;
+          c = mix(AGUA, [58, 112, 136], smooth(0.4, 0.75, patch) * 0.6);
+          brightness = 0.92 + 0.18 * clump;
+        } else if (dz >= 0 && dz < 4) {
+          c = mix(c, ORILLA, (1 - smooth(0, 4, dz)) * 0.8 * (1 - rock));
+        }
+      }
 
       // Curvas de nivel: finas cada 25 m, más marcadas cada 100 m
       const g = Math.hypot(gx, gy);
       let contour = 0;
       // Si las curvas quedan a menos de ~1 píxel (laderas muy empinadas) se apelmazan: se desvanecen
       const crowd = 1 - smooth(1.5, 4, g);
-      if (g > 0.08 && crowd > 0) {
+      if (!isWater && g > 0.08 && crowd > 0) {
         const r25 = ((e % 25) + 25) % 25;
         const r100 = ((e % 100) + 100) % 100;
         const minor = 1 - smooth(0.3, 0.9, Math.min(r25, 25 - r25) / g);

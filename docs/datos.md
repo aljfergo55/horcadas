@@ -10,7 +10,15 @@ Estado de las herramientas: `dem-to-heightmap.mjs` y `gpx-to-routes.mjs` están 
 - Recuadro de unos 9,8 × 10 km centrado en el pueblo, en grados: **oeste −5,104586 · sur 42,896826 · este −4,984586 · norte 42,986826**. Incluye Carande, el Puerto de Horcadas y el valle; el borde noreste queda cerca de Riaño.
 - Con `-ts 1025 1025` la celda del heightmap es de ≈ 9,5 m. El MDT05 original es de 5 m; si quieres más detalle usa `-ts 1537 1537` (≈ 6,4 m, heightmap de ≈ 9 MB).
 
-Comandos completos, ya con estos valores:
+**Vía directa, sin GDAL (la que se usa en este proyecto).** Las hojas del CNIG se descargan como GeoTIFF; este script las lee tal cual, recorta el recuadro de Horcadas y genera el relieve:
+
+```bash
+npm run data:geotiff -- etc/PNOA_MDT05_ETRS89_HU30_0105_LID.tif
+```
+
+Admite varias hojas a la vez (si el recuadro cae entre dos), `--bbox O,S,E,N` y `--size N`. Acepta TIFF clásico y BigTIFF, float32 sin compresión o Deflate, y UTM ETRS89 (EPSG:258xx) o grados. La hoja MDT05 **0105** cubre el recuadro entero. Resultado validado contra un recorte independiente descargado del IGN: diferencia media de 0,25 m en 400 puntos.
+
+Alternativa con GDAL, por si prefieres controlar el proceso. Comandos completos, ya con estos valores:
 
 ```bash
 # 1. Unir las hojas descargadas del CNIG (MDT05 o MDT02; .asc o .tif)

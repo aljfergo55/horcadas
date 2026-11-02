@@ -71,7 +71,7 @@ interface RouteRuntime {
 /* ───────────────────────── constantes y utilidades ───────────────────────── */
 
 const WORLD_W = 100; // ancho del terreno en unidades de escena
-const EXAGGERATION = 1.6; // exageración vertical
+const EXAGGERATION = 2.0; // exageración vertical
 const ROUTE_LIFT = 0.55; // las rutas flotan un poco sobre el suelo
 const TUBE_RADIUS = 0.2;
 const HIT_RADIUS = 1.1; // tubo invisible, más grueso, para que el hover sea fácil
@@ -334,7 +334,12 @@ async function main(): Promise<void> {
     ]);
     progress(0.6);
     if (ortho) ortho.colorSpace = THREE.SRGBColorSpace;
-    if (meta.placeholder) $('#placeholder-note')?.removeAttribute('hidden');
+    const note = $('#placeholder-note');
+    if (meta.placeholder) note?.removeAttribute('hidden');
+    else if (routeData.features.length === 0 && note) {
+      note.textContent = 'Relieve real (MDT05 del IGN). Las rutas se dibujarán aquí cuando se añadan los tracks GPX.';
+      note.removeAttribute('hidden');
+    }
 
     /* ── escena ── */
     const k = WORLD_W / meta.widthMeters; // metros -> unidades de escena
@@ -422,20 +427,24 @@ async function main(): Promise<void> {
     const hitMeshes = routes.map((r) => r.hit);
 
     /* ── camino de cámara ── */
+    // Recorrido sobre el relieve real de Horcadas (el pueblo está en el centro, u = v = 0,5):
+    // vuelo desde el embalse (noreste), aproximación al pueblo, paso hacia el brazo del embalse
+    // al oeste, vistazo a las crestas del sur y plano final de conjunto. Los valores de "altura" son
+    // metros de escena sobre el suelo, así que el camino sigue al relieve y no lo atraviesa.
     const posCurve = new THREE.CatmullRomCurve3(
       [
-        at(0.5, 1.25, 60),
-        at(0.4, 0.95, 30),
-        at(0.2, 0.62, 16),
-        at(0.45, 0.5, 14),
-        at(0.75, 0.55, 18),
-        at(0.9, 0.9, 40),
+        at(0.8, 0.1, 34),
+        at(0.66, 0.28, 18),
+        at(0.53, 0.42, 9),
+        at(0.44, 0.5, 10),
+        at(0.47, 0.64, 16),
+        at(0.5, 0.98, 36),
       ],
       false,
       'centripetal',
     );
     const lookCurve = new THREE.CatmullRomCurve3(
-      [at(0.5, 0.5, 0), at(0.45, 0.6, 6), at(0.45, 0.5, 6), at(0.75, 0.5, 6), at(0.5, 0.35, 8), at(0.5, 0.5, 6)],
+      [at(0.55, 0.4, 2), at(0.52, 0.48, 5), at(0.5, 0.5, 4), at(0.34, 0.46, 4), at(0.52, 0.84, 14), at(0.5, 0.5, 5)],
       false,
       'centripetal',
     );

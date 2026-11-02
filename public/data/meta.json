@@ -1,12 +1,19 @@
 {
-  "placeholder": true,
+  "placeholder": false,
   "encoding": "float32-le",
   "heightmap": "data/heightmap.bin",
-  "gridWidth": 513,
-  "gridHeight": 513,
+  "gridWidth": 1025,
+  "gridHeight": 1025,
   "ortho": null,
-  "widthMeters": 8000,
-  "heightMeters": 8000,
-  "minElev": 976,
-  "maxElev": 2654
+  "widthMeters": 9779,
+  "heightMeters": 9952,
+  "minElev": 1005,
+  "maxElev": 1972,
+  "bounds": {
+    "west": -5.104586,
+    "south": 42.896826,
+    "east": -4.984586,
+    "north": 42.986826
+  },
+  "source": "MDT05 PNOA-LiDAR © Instituto Geográfico Nacional de España (CC BY 4.0)"
 }

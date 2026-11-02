@@ -7,6 +7,7 @@ preview/
 
 # Datos de origen pesados (MDT/ortofoto del CNIG): se regeneran con el pipeline
 data-raw/
+etc/
 *.tif
 *.tiff
 *.gpx.bak

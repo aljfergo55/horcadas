@@ -65,7 +65,8 @@ Todo el texto de las secciones sale de ficheros JSON en `src/data/`; el HTML se 
 - [ ] Tracks reales dibujados en 3D (necesitan GPX propio o con licencia clara)
 - [ ] Canal para que los vecinos publiquen anuncios (formulario, correo o CMS)
 - [ ] **Pendiente de verificar visualmente en navegador** (el código está comprobado a nivel de sintaxis, pero aún no se ha compilado ni renderizado)
-- [ ] Datos reales de Horcadas (MDT + ortofoto + tus GPX)
+- [x] Relieve real de Horcadas (MDT05 del IGN, hoja 0105), con embalse de Riaño detectado y coloreado
+- [ ] Ortofoto real (`npm run data:ortho`) y tracks GPX de las rutas
 - [ ] Contenido real (historia, tradiciones, fiestas) y fotos
 - [ ] Postprocesado (bloom, profundidad de campo), texturas KTX2, LOD
 - [ ] CMS sencillo para que otros vecinos puedan actualizar la web
